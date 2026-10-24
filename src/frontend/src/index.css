@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Lora";
+  src: url("/assets/fonts/Lora.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/assets/fonts/InstrumentSerif-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --font-display: "Lora", serif;
+    --font-body: "Satoshi", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --font-accent: "Instrument Serif", serif;
+    --radius: 0.25rem;
+
+    /* Strict black/grey editorial horror — dark mode is the only mode */
+    --background: 0.11 0.004 285;
+    --foreground: 0.93 0.004 285;
+    --card: 0.155 0.005 285;
+    --card-foreground: 0.93 0.004 285;
+    --popover: 0.175 0.006 285;
+    --popover-foreground: 0.93 0.004 285;
+
+    /* Primary = bone/silver (monochrome, no chroma) */
+    --primary: 0.9 0.004 285;
+    --primary-foreground: 0.11 0.004 285;
+
+    --secondary: 0.21 0.006 285;
+    --secondary-foreground: 0.86 0.004 285;
+    --muted: 0.2 0.005 285;
+    --muted-foreground: 0.58 0.006 285;
+
+    /* Accent = restrained ember / blood red, used sparingly */
+    --accent: 0.52 0.16 28;
+    --accent-foreground: 0.96 0.01 28;
+
+    --destructive: 0.5 0.18 25;
+    --destructive-foreground: 0.96 0.01 25;
+    --success: 0.6 0.09 150;
+    --warning: 0.68 0.12 75;
+
+    --border: 0.26 0.006 285;
+    --input: 0.26 0.006 285;
+    --ring: 0.52 0.16 28;
+
+    --chart-1: 0.72 0.006 285;
+    --chart-2: 0.52 0.16 28;
+    --chart-3: 0.45 0.005 285;
+    --chart-4: 0.6 0.09 150;
+    --chart-5: 0.68 0.12 75;
+
+    --sidebar: 0.13 0.004 285;
+    --sidebar-foreground: 0.93 0.004 285;
+    --sidebar-primary: 0.9 0.004 285;
+    --sidebar-primary-foreground: 0.11 0.004 285;
+    --sidebar-accent: 0.2 0.005 285;
+    --sidebar-accent-foreground: 0.86 0.004 285;
+    --sidebar-border: 0.26 0.006 285;
+    --sidebar-ring: 0.52 0.16 28;
+
+    /* Atmosphere — fog, vignette, grain */
+    --fog: 0.72 0.004 285;
+    --fog-strong: 0.82 0.003 285;
+    --vignette: 0.05 0.004 285;
+    --grain-opacity: 0.05;
+    --hairline: 0.3 0.006 285;
+    --ember-glow: 0.52 0.16 28;
+
+    /* Depth */
+    --shadow-subtle: 0 1px 2px 0 oklch(0.05 0 0 / 0.5);
+    --shadow-elevated: 0 18px 48px -20px oklch(0.03 0 0 / 0.85);
+    --shadow-inset-soft: inset 0 1px 0 0 oklch(0.35 0 0 / 0.25);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(
+      135deg,
+      oklch(0.93 0.004 285) 0%,
+      oklch(0.72 0.005 285) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(0.155 0.005 285) 0%,
+      oklch(0.11 0.004 285) 100%
+    );
+    --gradient-ember: linear-gradient(
+      90deg,
+      oklch(0.52 0.16 28) 0%,
+      oklch(0.42 0.13 28) 100%
+    );
+
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Dark is the default and only theme; .dark mirrors :root */
+  .dark {
+    --background: 0.11 0.004 285;
+    --foreground: 0.93 0.004 285;
+    --card: 0.155 0.005 285;
+    --card-foreground: 0.93 0.004 285;
+    --popover: 0.175 0.006 285;
+    --popover-foreground: 0.93 0.004 285;
+    --primary: 0.9 0.004 285;
+    --primary-foreground: 0.11 0.004 285;
+    --secondary: 0.21 0.006 285;
+    --secondary-foreground: 0.86 0.004 285;
+    --muted: 0.2 0.005 285;
+    --muted-foreground: 0.58 0.006 285;
+    --accent: 0.52 0.16 28;
+    --accent-foreground: 0.96 0.01 28;
+    --destructive: 0.5 0.18 25;
+    --destructive-foreground: 0.96 0.01 25;
+    --border: 0.26 0.006 285;
+    --input: 0.26 0.006 285;
+    --ring: 0.52 0.16 28;
+  }
+
+  * {
+    @apply border-border;
+  }
+  html {
+    color-scheme: dark;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  ::selection {
+    background: oklch(var(--accent) / 0.35);
+    color: oklch(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .transition-slow {
+    transition: var(--transition-slow);
+  }
+
+  /* Typographic helpers */
+  .font-accent {
+    font-family: var(--font-accent);
+    font-style: italic;
+  }
+  .text-kicker {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+  }
+
+  /* Atmosphere — grain overlay */
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+  .grain-overlay {
+    position: relative;
+  }
+  .grain-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    opacity: var(--grain-opacity);
+    mix-blend-mode: overlay;
+  }
+
+  /* Atmosphere — fog / mist */
+  .fog-layer {
+    background: radial-gradient(
+        60% 50% at 50% 100%,
+        oklch(var(--fog) / 0.14) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        45% 40% at 20% 20%,
+        oklch(var(--fog-strong) / 0.08) 0%,
+        transparent 65%
+      );
+  }
+  .mist-drift {
+    animation: mist-drift 18s ease-in-out infinite alternate;
+  }
+
+  /* Atmosphere — vignette */
+  .vignette {
+    position: relative;
+  }
+  .vignette::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      120% 90% at 50% 40%,
+      transparent 45%,
+      oklch(var(--vignette) / 0.55) 100%
+    );
+  }
+
+  /* Ember accent rule */
+  .rule-ember {
+    height: 1px;
+    background: var(--gradient-ember);
+  }
+  .text-ember {
+    color: oklch(var(--accent));
+  }
+  .ring-ember {
+    box-shadow: 0 0 0 1px oklch(var(--accent) / 0.4);
+  }
+
+  /* Surface treatments */
+  .surface-card {
+    background: var(--gradient-subtle);
+    border: 1px solid oklch(var(--border));
+    box-shadow: var(--shadow-subtle), var(--shadow-inset-soft);
+  }
+  .surface-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+  .hairline {
+    border-color: oklch(var(--hairline));
+  }
+}
